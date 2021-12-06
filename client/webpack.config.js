@@ -1,8 +1,9 @@
-const path = require('path');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
-const HTMLWebpackPlugin = require('html-webpack-plugin');
-const tailwind = require('tailwindcss');
-const autoprefixer = require('autoprefixer');
+import path from 'path';
+import {CleanWebpackPlugin} from 'clean-webpack-plugin';
+import HTMLWebpackPlugin from 'html-webpack-plugin';
+import tailwind from 'tailwindcss';
+import autoprefixer from 'autoprefixer';
+import ESLintPlugin from 'eslint-webpack-plugin';
 
 module.exports = {
     mode: 'development',
@@ -21,7 +22,10 @@ module.exports = {
     },
     plugins: [
         new HTMLWebpackPlugin({template: "./src/public/index.html"}),
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin(),
+        new ESLintPlugin({
+            extensions: ["js", "jsx", "ts", "tsx"]
+        })
     ],
     module: {
         rules: [
