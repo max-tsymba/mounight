@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "rootDir": "./",
+    "outDir": "./build",
+    "noEmit": true,
+    "esModuleInterop": true
+  }
+}
