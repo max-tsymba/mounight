@@ -1,0 +1,50 @@
+// ::selection {
+//     background: #000;
+//     color: #fff;
+// }
+
+img,
+svg {
+  display: block;
+  vertical-align: middle;
+  border: none;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration-skip-ink: auto;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hgroup,
+ul,
+ol,
+dd,
+figure,
+pre,
+table,
+fieldset,
+hr {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+p {
+  margin: 0 0 10px;
+  line-height: inherit;
+  &:last-child {
+    margin: 0;
+  }
+}
+
+body {
+  font-family: 'Roboto';
+  font-weight: 400;
+}
