@@ -1,9 +1,10 @@
-import path from 'path';
-import {CleanWebpackPlugin} from 'clean-webpack-plugin';
-import HTMLWebpackPlugin from 'html-webpack-plugin';
-import tailwind from 'tailwindcss';
-import autoprefixer from 'autoprefixer';
-import ESLintPlugin from 'eslint-webpack-plugin';
+/* eslint-disable @typescript-eslint/no-var-requires */
+const path = require('path');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
+const tailwind = require('tailwindcss');
+const autoprefixer = require('autoprefixer');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
     mode: 'development',
@@ -24,7 +25,7 @@ module.exports = {
         new HTMLWebpackPlugin({template: "./src/public/index.html"}),
         new CleanWebpackPlugin(),
         new ESLintPlugin({
-            extensions: ["js", "jsx", "ts", "tsx"]
+            extensions: ["js", "jsx", "ts", "tsx"],
         })
     ],
     module: {
