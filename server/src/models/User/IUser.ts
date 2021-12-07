@@ -1,13 +1,11 @@
 import { Document } from 'mongoose';
 
 export default interface IUser extends Document {
-  userName: string;
+  username: string;
   email: string;
   password: string;
   avatar?: string;
-  bgCover?: string;
-  isActivated?: boolean;
-  activationLink?: string;
-  mediaFiles: any;
-  collection: any;
+  bg_cover?: string;
+  is_activated?: boolean;
+  activation_link?: string;
 }

@@ -6,7 +6,7 @@ import mailService from './mailService';
 import tokenService from './tokenService';
 
 class UserService {
-  async registration(userName: string, email: string, password: string) {
+  async registration(username: string, email: string, password: string) {
     await User.findOne({ email })
       .exec()
       .then(() => {
@@ -17,15 +17,15 @@ class UserService {
       });
 
     const hashPassword: string = await bcrypt.hash(password, 3);
-    const activationLink: string = uuid.v4();
+    const activation_link: string = uuid.v4();
     const newUser: IUser = new User({
-      userName,
+      username,
       email,
       password: hashPassword,
-      activationLink,
+      activation_link,
     });
     await newUser.save();
-    await mailService.sendActivationMail(email, activationLink);
+    await mailService.sendActivationMail(email, activation_link);
     // const tokens: any = tokenService.generateTokens()
   }
 }
