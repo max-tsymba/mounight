@@ -1,7 +1,7 @@
 import User from '../models/User/User';
 import bcrypt from 'bcrypt';
 import IUser from '../models/User/IUser';
-import uuid from 'uuid';
+import * as uuid from 'uuid';
 import mailService from './mailService';
 import tokenService from './tokenService';
 import UserDto from '../dtos/user/user.dto';
@@ -20,6 +20,7 @@ class UserService {
 
     const hashPassword: string = await bcrypt.hash(password, 3);
     const activation_link: string = uuid.v4();
+
     const newUser: IUser = new User({
       username,
       email,
@@ -27,7 +28,10 @@ class UserService {
       activation_link,
     });
     await newUser.save();
-    await mailService.sendActivationMail(email, activation_link);
+    await mailService.sendActivationMail(
+      email,
+      `${process.env.API_URL}/api/activate/${activation_link}`,
+    );
 
     const userDto: IUserDto = new UserDto(newUser); //id, email, password
     const tokens: any = tokenService.generateTokens({ ...userDto });
