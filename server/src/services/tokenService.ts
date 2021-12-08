@@ -4,13 +4,17 @@ import IToken from '../models/Token/IToken';
 
 class TokenService {
   generateTokens(payload: any): any {
-    const accessToken: any = jwt.sign(payload, process.env.JWT_ACCESS_KEY, {
+    const accessToken: string = jwt.sign(payload, process.env.JWT_ACCESS_KEY, {
       expiresIn: '30m',
     });
 
-    const refreshToken: any = jwt.sign(payload, process.env.JWT_REFRESH_KEY, {
-      expiresIn: '30d',
-    });
+    const refreshToken: string = jwt.sign(
+      payload,
+      process.env.JWT_REFRESH_KEY,
+      {
+        expiresIn: '30d',
+      },
+    );
 
     return {
       accessToken,
@@ -26,7 +30,7 @@ class TokenService {
         return tokenData.save();
       })
       .catch((error: any) => {
-        console.log(error);
+        return error;
       });
 
     const newToken: IToken = new Token({

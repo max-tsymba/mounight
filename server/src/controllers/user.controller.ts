@@ -1,4 +1,5 @@
 import express, { NextFunction } from 'express';
+import userService from '../services/userService';
 
 class UserController {
   async registration(
@@ -7,7 +8,28 @@ class UserController {
     next: express.NextFunction,
   ) {
     try {
-    } catch (e: any) {}
+      const {
+        username,
+        email,
+        password,
+      }: { username: string; email: string; password: string } = req.body;
+
+      const userData: any = await userService.registration(
+        username,
+        email,
+        password,
+      );
+
+      const maxAge: number = 30 * 24 * 60 * 60 * 1000;
+
+      res.cookie('refreshToken', userData.refreshToken, {
+        maxAge,
+        httpOnly: true,
+      });
+      return res.json(userData);
+    } catch (e: any) {
+      console.log(e);
+    }
   }
 
   async login(

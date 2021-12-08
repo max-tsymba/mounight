@@ -4,6 +4,8 @@ import IUser from '../models/User/IUser';
 import uuid from 'uuid';
 import mailService from './mailService';
 import tokenService from './tokenService';
+import UserDto from '../dtos/user/user.dto';
+import IUserDto from '../dtos/user/user';
 
 class UserService {
   async registration(username: string, email: string, password: string) {
@@ -13,7 +15,7 @@ class UserService {
         throw new Error(`An account with email ${email} already exists`);
       })
       .catch((error: any) => {
-        console.log(error);
+        return error;
       });
 
     const hashPassword: string = await bcrypt.hash(password, 3);
@@ -26,7 +28,16 @@ class UserService {
     });
     await newUser.save();
     await mailService.sendActivationMail(email, activation_link);
-    // const tokens: any = tokenService.generateTokens()
+
+    const userDto: IUserDto = new UserDto(newUser); //id, email, password
+    const tokens: any = tokenService.generateTokens({ ...userDto });
+
+    await tokenService.saveToken(userDto.id, tokens.refreshToken);
+
+    return {
+      ...tokens,
+      user: userDto,
+    };
   }
 }
 
