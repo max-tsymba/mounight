@@ -6,13 +6,18 @@ import mailService from './mailService';
 import tokenService from './tokenService';
 import UserDto from '../dtos/user/user.dto';
 import IUserDto from '../dtos/user/user';
+import ApiError from '../exceptions/api.error';
 
 class UserService {
   async registration(username: string, email: string, password: string) {
     await User.findOne({ email })
       .exec()
-      .then(() => {
-        throw new Error(`An account with email ${email} already exists`);
+      .then((user) => {
+        if (user) {
+          throw ApiError.BadRequest(
+            `An account with email ${email} already exists`,
+          );
+        }
       })
       .catch((error: any) => {
         return error;
@@ -53,7 +58,7 @@ class UserService {
       .exec()
       .then(async (findedUser) => {
         if (!findedUser) {
-          throw new Error('Link incorrect!');
+          throw ApiError.BadRequest('Link incorrect!');
         }
         findedUser.is_activated = true;
         await findedUser.save();

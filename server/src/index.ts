@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import router from './routes/auth.router';
+import errorMiddleware from './middlewares/error.middleware';
 dotenv.config();
 
 const app: any = express();
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
 app.use('/api', router);
+app.use(errorMiddleware);
 
 const start: any = async () => {
   try {

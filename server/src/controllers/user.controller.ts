@@ -28,7 +28,7 @@ class UserController {
       });
       return res.json(userData);
     } catch (e: any) {
-      console.log(e);
+      next(e);
     }
   }
 
@@ -60,7 +60,7 @@ class UserController {
       await userService.activate(activationLink);
       return res.redirect(process.env.CLIENT_URL);
     } catch (e: any) {
-      console.log(e);
+      next(e);
     }
   }
 
