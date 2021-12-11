@@ -1,21 +1,21 @@
-import * as nodemailer from 'nodemailer';
+import nodemailer from 'nodemailer';
 
-class MailService {
+export default class MailService {
   transporter: any;
   constructor() {
     this.transporter = nodemailer.createTransport({
-      host: process.env.MAIL_HOST,
-      port: process.env.MAIL_PORT,
+      host: process.env.SMTP_HOST,
+      port: Number(process.env.SMTP_PORT),
       secure: false,
       auth: {
-        user: process.env.MAIL_USER,
-        password: process.env.MAIL_PASSWORD,
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASSWORD,
       },
     });
   }
   async sendActivationMail(to: string, link: string) {
     await this.transporter.sendMail({
-      from: process.env.MAIL_USER,
+      from: process.env.SMTP_USER,
       to,
       subject: 'Activation account on ' + process.env.API_URL,
       text: '',
@@ -29,4 +29,4 @@ class MailService {
   }
 }
 
-export default new MailService();
+// export default new MailService();

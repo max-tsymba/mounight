@@ -28,7 +28,9 @@ class UserService {
       activation_link,
     });
     await newUser.save();
-    await mailService.sendActivationMail(
+
+    let service: mailService = new mailService();
+    await service.sendActivationMail(
       email,
       `${process.env.API_URL}/api/activate/${activation_link}`,
     );
