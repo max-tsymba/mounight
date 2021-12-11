@@ -56,7 +56,12 @@ class UserController {
     next: express.NextFunction,
   ) {
     try {
-    } catch (e: any) {}
+      const activationLink: string = req.params.link;
+      await userService.activate(activationLink);
+      return res.redirect(process.env.CLIENT_URL);
+    } catch (e: any) {
+      console.log(e);
+    }
   }
 
   async refresh(

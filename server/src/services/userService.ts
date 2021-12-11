@@ -45,6 +45,23 @@ class UserService {
       user: userDto,
     };
   }
+
+  async activate(activationLink: string) {
+    await User.findOne({
+      activation_link: activationLink,
+    })
+      .exec()
+      .then(async (findedUser) => {
+        if (!findedUser) {
+          throw new Error('Link incorrect!');
+        }
+        findedUser.is_activated = true;
+        await findedUser.save();
+      })
+      .catch((err: any) => {
+        return err;
+      });
+  }
 }
 
 export default new UserService();
