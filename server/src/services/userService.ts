@@ -48,6 +48,31 @@ class UserService {
     const userFound = User.findOne({ activation_link: activationLink }).exec();
     if (!userFound) throw ApiError.BadRequest('Link incorrect!');
   }
+
+  async login(email: string, password: string) {
+    const userFound = await User.findOne({ email }).exec();
+    if (!userFound) throw ApiError.BadRequest('User not found!');
+    const isPasswordEquals: boolean = await bcrypt.compare(
+      password,
+      userFound.password,
+    );
+    if (!isPasswordEquals) throw ApiError.BadRequest('Password incorrect!');
+
+    const userDto: IUserDto = new UserDto(userFound);
+    const tokens: any = tokenService.generateTokens({ ...userDto });
+
+    await tokenService.saveToken(userDto.id, tokens.refreshToken);
+
+    return {
+      ...tokens,
+      user: userDto,
+    };
+  }
+
+  async logout(refreshToken) {
+    const token: any = await tokenService.removeToken(refreshToken);
+    return token;
+  }
 }
 
 export default new UserService();

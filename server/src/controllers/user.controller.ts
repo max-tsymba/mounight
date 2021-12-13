@@ -1,5 +1,7 @@
 import express, { NextFunction } from 'express';
 import userService from '../services/userService';
+import { Result, ValidationError, validationResult } from 'express-validator';
+import ApiError from '../exceptions/api.error';
 
 class UserController {
   async registration(
@@ -8,6 +10,10 @@ class UserController {
     next: express.NextFunction,
   ) {
     try {
+      const errors: Result<ValidationError> = validationResult(req);
+      if (!errors.isEmpty()) {
+        return next(ApiError.BadRequest('Validation error!', errors.array()));
+      }
       const {
         username,
         email,
@@ -38,6 +44,14 @@ class UserController {
     next: express.NextFunction,
   ) {
     try {
+      const { email, password }: { email: string; password: string } = req.body;
+      const userData = await userService.login(email, password);
+      const maxAge: number = 30 * 24 * 60 * 60 * 1000;
+      res.cookie('refreshToken', userData.refreshToken, {
+        maxAge,
+        httpOnly: true,
+      });
+      return res.json(userData);
     } catch (e: any) {
       next(e);
     }
@@ -49,6 +63,10 @@ class UserController {
     next: express.NextFunction,
   ) {
     try {
+      const { refreshToken }: { refreshToken: string } = req.cookies;
+      const token: any = await userService.logout(refreshToken);
+      res.clearCookie('refreshToken');
+      return res.json(token);
     } catch (e: any) {
       next(e);
     }
