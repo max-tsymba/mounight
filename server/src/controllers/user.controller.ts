@@ -95,10 +95,10 @@ class UserController {
       const { refreshToken }: { refreshToken: string } = req.cookies;
       const userData = await userService.refresh(refreshToken);
       const maxAge: number = 30 * 24 * 60 * 60 * 1000;
-      // res.cookie('refreshToken', userData.refreshToken, {
-      //   maxAge,
-      //   httpOnly: true,
-      // });
+      res.cookie('refreshToken', userData.refreshToken, {
+        maxAge,
+        httpOnly: true,
+      });
     } catch (e: any) {
       next(e);
     }
@@ -110,7 +110,8 @@ class UserController {
     next: express.NextFunction,
   ) {
     try {
-      res.json('Worked');
+      const users = await userService.getAllUser();
+      return res.json(users);
     } catch (e: any) {
       next(e);
     }
