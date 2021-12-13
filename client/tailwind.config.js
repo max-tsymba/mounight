@@ -23,19 +23,25 @@ module.exports = {
             center: true,
             padding: '15px',
             screens: {
-              'desktop': '1270px',
+              'desktop': '1290px',
             },
         },
         fontSize: {
+            'md': '20px',
         },
         lineHeight: {
+            '12': '1.2',
         },
         borderRadius: {
+            'r7': '7px',
         },
         fontFamily: {
             default: ['Roboto', 'sans-serif'],
         },
         spacing: {
+            '12': '12px',
+            '20': '20px',
+            '48': '48px',
         },
         maxWidth: {
             'full': '100%',
@@ -50,11 +56,13 @@ module.exports = {
         },
         extend: {
             width:{
+                '150': '150px',
             },
             height:{
 
             },
             boxShadow:{
+                DEFAULT: '0px 4px 6px rgba(0, 0, 0, 0.25)',
             }
         },
     },
