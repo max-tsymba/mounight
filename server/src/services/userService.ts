@@ -69,9 +69,32 @@ class UserService {
     };
   }
 
-  async logout(refreshToken) {
+  async logout(refreshToken: string) {
     const token: any = await tokenService.removeToken(refreshToken);
     return token;
+  }
+
+  async refresh(refreshToken: string) {
+    if (!refreshToken) {
+      throw ApiError.UnauthorizedError();
+    }
+
+    const userData: any = tokenService.validateRefreshToken(refreshToken);
+    const tokenFromDB: any = await tokenService.findToken(refreshToken);
+    if (!userData || !tokenFromDB) {
+      throw ApiError.UnauthorizedError();
+    }
+
+    const userFound: any = await User.findById(userData.id);
+    const userDto: IUserDto = new UserDto(userFound);
+    const tokens: any = tokenService.generateTokens({ ...userDto });
+
+    await tokenService.saveToken(userDto.id, tokens.refreshToken);
+
+    return {
+      ...tokens,
+      user: userDto,
+    };
   }
 }
 

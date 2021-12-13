@@ -92,6 +92,13 @@ class UserController {
     next: express.NextFunction,
   ) {
     try {
+      const { refreshToken }: { refreshToken: string } = req.cookies;
+      const userData = await userService.refresh(refreshToken);
+      const maxAge: number = 30 * 24 * 60 * 60 * 1000;
+      // res.cookie('refreshToken', userData.refreshToken, {
+      //   maxAge,
+      //   httpOnly: true,
+      // });
     } catch (e: any) {
       next(e);
     }
