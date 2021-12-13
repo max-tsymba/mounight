@@ -38,7 +38,9 @@ class UserController {
     next: express.NextFunction,
   ) {
     try {
-    } catch (e: any) {}
+    } catch (e: any) {
+      next(e);
+    }
   }
 
   async logout(
@@ -47,7 +49,9 @@ class UserController {
     next: express.NextFunction,
   ) {
     try {
-    } catch (e: any) {}
+    } catch (e: any) {
+      next(e);
+    }
   }
 
   async activate(
@@ -70,7 +74,9 @@ class UserController {
     next: express.NextFunction,
   ) {
     try {
-    } catch (e: any) {}
+    } catch (e: any) {
+      next(e);
+    }
   }
 
   async getUsers(
@@ -80,7 +86,9 @@ class UserController {
   ) {
     try {
       res.json('Worked');
-    } catch (e: any) {}
+    } catch (e: any) {
+      next(e);
+    }
   }
 }
 

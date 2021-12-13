@@ -1,6 +1,6 @@
 import IApiError from './IApiError';
 
-export default class ApiError extends Error implements IApiError {
+class ApiError extends Error implements IApiError {
   status;
   errors;
 
@@ -8,6 +8,7 @@ export default class ApiError extends Error implements IApiError {
     super(message);
     this.status = status;
     this.errors = errors;
+    Object.setPrototypeOf(this, ApiError.prototype);
   }
 
   static UnauthorizedError() {
@@ -18,3 +19,5 @@ export default class ApiError extends Error implements IApiError {
     return new ApiError(400, message, errors);
   }
 }
+
+export default ApiError;

@@ -10,18 +10,11 @@ import ApiError from '../exceptions/api.error';
 
 class UserService {
   async registration(username: string, email: string, password: string) {
-    await User.findOne({ email })
-      .exec()
-      .then((user) => {
-        if (user) {
-          throw ApiError.BadRequest(
-            `An account with email ${email} already exists`,
-          );
-        }
-      })
-      .catch((error: any) => {
-        return error;
-      });
+    const userFound = await User.findOne({ email }).exec();
+    if (userFound)
+      throw ApiError.BadRequest(
+        `An account with email ${email} already exists`,
+      );
 
     const hashPassword: string = await bcrypt.hash(password, 3);
     const activation_link: string = uuid.v4();
@@ -52,20 +45,8 @@ class UserService {
   }
 
   async activate(activationLink: string) {
-    await User.findOne({
-      activation_link: activationLink,
-    })
-      .exec()
-      .then(async (findedUser) => {
-        if (!findedUser) {
-          throw ApiError.BadRequest('Link incorrect!');
-        }
-        findedUser.is_activated = true;
-        await findedUser.save();
-      })
-      .catch((err: any) => {
-        return err;
-      });
+    const userFound = User.findOne({ activation_link: activationLink }).exec();
+    if (!userFound) throw ApiError.BadRequest('Link incorrect!');
   }
 }
 
