@@ -4,9 +4,18 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 
 const AppRouter = () => {
   const isAuth = false;
-  return isAuth ? (
+  return (
     <Switch>
-      {privateRoutes.map((route: IRoute) => (
+      {isAuth &&
+        privateRoutes.map((route: IRoute) => (
+          <Route
+            path={route.path}
+            component={route.component}
+            exact={route.exact}
+            key={route.path}
+          />
+        ))}
+      {publicRoutes.map((route: IRoute) => (
         <Route
           path={route.path}
           component={route.component}
@@ -14,18 +23,7 @@ const AppRouter = () => {
           key={route.path}
         />
       ))}
-      <Redirect to={RoutesNames.HOME} />
-    </Switch>
-  ) : (
-    <Switch>
-      {publicRoutes.map((route: IRoute) => {
-        <Route
-          path={route.path}
-          component={route.component}
-          exact={route.exact}
-          key={route.path}
-        />;
-      })}
+
       <Redirect to={RoutesNames.HOME} />
     </Switch>
   );
