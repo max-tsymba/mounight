@@ -15,7 +15,7 @@
     "jsx": "react",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
+      "@/*": ["src/*"],
       "@/public/*": ["./public/*"]
     },
     "incremental": true
@@ -28,6 +28,7 @@
     "webpack"
   ],
   "include": [
+    "src",
     "**/*.ts",
     "**/*.tsx",
     "webpack.config.js",

@@ -39,6 +39,7 @@ module.exports = {
             default: ['Roboto', 'sans-serif'],
         },
         spacing: {
+            '10': '10px',
             '12': '12px',
             '20': '20px',
             '48': '48px',
@@ -69,6 +70,8 @@ module.exports = {
     variants:{
         extend: {
             margin: ['last'],
+            backgroundColor: ['hover'],
+            textColor: ['hover'],
         },
     },
     plugins: [],

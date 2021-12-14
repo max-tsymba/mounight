@@ -1,3 +1,11 @@
 .header {
-  @apply bg-black;
+  @apply py-48;
+}
+
+.header__inner {
+  @apply flex items-center;
+}
+
+.header__btns {
+  @apply ml-auto flex gap-x-20;
 }
