@@ -9,7 +9,7 @@ import styles from './styles.module.scss';
 import Avatar from 'react-avatar';
 
 const defaultProps: IUserHeroProps = {
-  username: 'Byte Story',
+  username: 'Username',
   bgCover: bg,
   createdAt: '20 dec 2021',
   avatar: ava,
@@ -23,9 +23,9 @@ const UserHero = ({ username, createdAt, bgCover, avatar }: IUserHeroProps) => {
     >
       <Container>
         <div className={styles.hero__inner}>
-          <Avatar name={username} round="50%" src={avatar} />
+          <Avatar name={username} size="150px" round="50%" src={avatar} />
           <h1 className={styles.title}>{username}</h1>
-          <p className={styles.subtitle}>Jouned at {createdAt}</p>
+          <p className={styles.subtitle}>Joined at {createdAt}</p>
         </div>
       </Container>
     </section>
