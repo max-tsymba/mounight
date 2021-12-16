@@ -35,6 +35,7 @@ module.exports = {
         },
         borderRadius: {
             'r7': '7px',
+            'r50%': '50%',
         },
         fontFamily: {
             default: ['Roboto', 'sans-serif'],
@@ -63,6 +64,7 @@ module.exports = {
         extend: {
             width:{
                 '150': '150px',
+                '200': '200px',
             },
             height:{
 
