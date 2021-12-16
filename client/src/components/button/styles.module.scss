@@ -3,7 +3,7 @@
 }
 
 .dark {
-  @apply shadow bg-black text-white hover:bg-white hover:text-black;
+  @apply shadow bg-black text-white hover:bg-white hover:text-black hover:shadow-none;
 }
 
 .light {
