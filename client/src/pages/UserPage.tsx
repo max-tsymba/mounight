@@ -3,9 +3,9 @@ import UserHero from '../components/userHero';
 
 const UserPage = () => {
   return (
-    <section>
+    <>
       <UserHero />
-    </section>
+    </>
   );
 };
 

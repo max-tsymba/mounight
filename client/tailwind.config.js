@@ -35,7 +35,7 @@ module.exports = {
             '12': '1.2',
         },
         borderRadius: {
-            'r7': '7px',
+            'r30': '30px',
             'r50%': '50%',
         },
         fontFamily: {

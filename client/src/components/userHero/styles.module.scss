@@ -1,9 +1,13 @@
 .hero {
-  @apply bg-no-repeat bg-cover bg-center py-90 text-white;
+  @apply bg-no-repeat bg-cover bg-center py-90 text-white relative;
+}
+
+.hero__rect {
+  @apply absolute top-0 bottom-0 left-0 right-0 bg-black z-10 opacity-30;
 }
 
 .hero__inner {
-  @apply flex flex-col items-center;
+  @apply flex flex-col items-center relative z-20;
 }
 
 .title {

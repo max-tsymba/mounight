@@ -2,7 +2,7 @@ import React from 'react';
 import Container from '../container';
 import IUserHeroProps from './types';
 // @ts-ignore
-import bg from '../../assets/static/hero-bg.png';
+import bg from '../../assets/static/bg.png';
 // @ts-ignore
 import ava from '../../assets/static/ava.png';
 import styles from './styles.module.scss';
@@ -21,6 +21,7 @@ const UserHero = ({ username, createdAt, bgCover, avatar }: IUserHeroProps) => {
       className={styles.hero}
       style={{ backgroundImage: `url(${bgCover})` }}
     >
+      <div className={styles.hero__rect}></div>
       <Container>
         <div className={styles.hero__inner}>
           <Avatar name={username} size="150px" round="50%" src={avatar} />

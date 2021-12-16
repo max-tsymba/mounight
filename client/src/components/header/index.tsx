@@ -28,7 +28,9 @@ const Header = () => {
                 >
                   <img src={user} alt="" />
                 </NavLink>
-                <Button>Upload Image</Button>
+                <NavLink to={RoutesNames.USER_PAGE}>
+                  <Button>Upload Image</Button>
+                </NavLink>
               </>
             ) : (
               <>
