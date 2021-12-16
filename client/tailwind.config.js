@@ -28,6 +28,7 @@ module.exports = {
         },
         fontSize: {
             'md': '20px',
+            'xl': '52px',
         },
         lineHeight: {
             '12': '1.2',
@@ -39,10 +40,14 @@ module.exports = {
             default: ['Roboto', 'sans-serif'],
         },
         spacing: {
+            '0': '0px',
             '10': '10px',
             '12': '12px',
             '20': '20px',
+            '40': '40px',
             '48': '48px',
+            '90': '90px',
+            '120': '120px',
         },
         maxWidth: {
             'full': '100%',
