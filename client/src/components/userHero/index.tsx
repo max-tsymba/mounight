@@ -3,27 +3,29 @@ import Container from '../container';
 import IUserHeroProps from './types';
 // @ts-ignore
 import bg from '../../assets/static/hero-bg.png';
+// @ts-ignore
+import ava from '../../assets/static/ava.png';
 import styles from './styles.module.scss';
-import Avatar from '../avatar';
+import Avatar from 'react-avatar';
 
 const defaultProps: IUserHeroProps = {
-  username: 'Username',
-  bgCover: 'bgCover',
+  username: 'Byte Story',
+  bgCover: bg,
   createdAt: '20 dec 2021',
-  avatar: 'avatar',
+  avatar: ava,
 };
 
 const UserHero = ({ username, createdAt, bgCover, avatar }: IUserHeroProps) => {
   return (
-    <section className={styles.hero} style={{ backgroundImage: `url(${bg})` }}>
+    <section
+      className={styles.hero}
+      style={{ backgroundImage: `url(${bgCover})` }}
+    >
       <Container>
         <div className={styles.hero__inner}>
-          <Avatar />
+          <Avatar name={username} round="50%" src={avatar} />
           <h1 className={styles.title}>{username}</h1>
           <p className={styles.subtitle}>Jouned at {createdAt}</p>
-          <div>
-            Hero {avatar} {bgCover}
-          </div>
         </div>
       </Container>
     </section>
