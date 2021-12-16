@@ -1,10 +1,10 @@
-import Container from '../components/container';
 import React from 'react';
+import UserHero from '../components/userHero';
 
 const UserPage = () => {
   return (
     <section>
-      <Container>User Page</Container>
+      <UserHero />
     </section>
   );
 };

@@ -1,0 +1,15 @@
+.hero {
+  @apply bg-no-repeat bg-cover bg-center py-90 text-white;
+}
+
+.hero__inner {
+  @apply flex flex-col items-center;
+}
+
+.title {
+  @apply text-xs leading-12 font-bold tracking-wide mt-20;
+}
+
+.subtitle {
+  @apply py-12 leading-12 tracking-wider opacity-80;
+}
