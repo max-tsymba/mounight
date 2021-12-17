@@ -24,7 +24,7 @@ const AppRouter = () => {
         />
       ))}
 
-      <Redirect to={RoutesNames.HOME} />
+      <Redirect to={RoutesNames.Page404} />
     </Switch>
   );
 };

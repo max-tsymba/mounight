@@ -1,9 +1,9 @@
 .button {
-  @apply w-150 text-md font-bold py-12 px-10 rounded-r7 text-center leading-12 border border-black duration-300;
+  @apply w-200 text-md font-bold py-12 px-10 rounded-r30 text-center leading-12 border border-black duration-300;
 }
 
 .dark {
-  @apply shadow bg-black text-white hover:bg-white hover:text-black;
+  @apply shadow bg-black text-white hover:bg-white hover:text-black hover:shadow-none;
 }
 
 .light {

@@ -3,9 +3,10 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import Button from '../button';
 import Container from '../container';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import logo from '../../assets/static/logo.svg';
+// @ts-ignore
+import user from '../../assets/static/user.png';
 import styles from './styles.module.scss';
 import Modal from '../modal';
 import Form from '../form';
@@ -13,6 +14,7 @@ import Form from '../form';
 const Header = () => {
   const [showRegModal, setShowRegModal]: [boolean, any] = useState(false);
   const [showLoginModal, setShowLoginModal]: [boolean, any] = useState(false);
+  const isAuth = true;
   return (
     <header className={styles.header}>
       <Container>
@@ -22,10 +24,26 @@ const Header = () => {
           </NavLink>
 
           <div className={styles.header__btns}>
-            <Button theme="light" onClick={() => setShowRegModal(true)}>
-              Sign Up
-            </Button>
-            <Button onClick={() => setShowLoginModal(true)}>Log in</Button>
+            {isAuth ? (
+              <>
+                <NavLink
+                  to={RoutesNames.USER_PAGE}
+                  className={styles.header__account}
+                >
+                  <img src={user} alt="" />
+                </NavLink>
+                <NavLink to={RoutesNames.USER_PAGE}>
+                  <Button>Upload Image</Button>
+                </NavLink>
+              </>
+            ) : (
+              <>
+                <Button theme="light" onClick={() => setShowRegModal(true)}>
+                  Sign Up
+                </Button>
+                <Button onClick={() => setShowLoginModal(true)}>Log in</Button>
+              </>
+            )}
           </div>
 
           <Modal show={showRegModal} onClose={() => setShowRegModal(false)}>

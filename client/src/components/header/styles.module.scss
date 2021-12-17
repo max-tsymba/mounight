@@ -7,5 +7,12 @@
 }
 
 .header__btns {
-  @apply ml-auto flex gap-x-20;
+  @apply ml-auto flex gap-x-20 items-center;
+}
+
+.header__account {
+  @apply inline-block border p-12 rounded-r50%;
+  img {
+    @apply w-20;
+  }
 }

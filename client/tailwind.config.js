@@ -29,12 +29,15 @@ module.exports = {
         },
         fontSize: {
             'md': '20px',
+            'xs': '36px',
+            'xl': '52px',
         },
         lineHeight: {
             '12': '1.2',
         },
         borderRadius: {
-            'r7': '7px',
+            'r30': '30px',
+            'r50%': '50%',
         },
         fontFamily: {
             default: ['Roboto', 'sans-serif'],
@@ -44,7 +47,10 @@ module.exports = {
             '10': '10px',
             '12': '12px',
             '20': '20px',
+            '40': '40px',
             '48': '48px',
+            '90': '90px',
+            '120': '120px',
         },
         maxWidth: {
             'full': '100%',
@@ -60,6 +66,7 @@ module.exports = {
         extend: {
             width:{
                 '150': '150px',
+                '200': '200px',
             },
             height:{
 
