@@ -11,6 +11,7 @@ module.exports = {
             },
             'black' : {
                 DEFAULT: 'black',
+                'transition': 'rgba(0, 0, 0, 0.25)',
             },
         },
         screens: {
@@ -39,6 +40,7 @@ module.exports = {
             default: ['Roboto', 'sans-serif'],
         },
         spacing: {
+            '0': '0px',
             '10': '10px',
             '12': '12px',
             '20': '20px',

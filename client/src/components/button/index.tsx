@@ -7,10 +7,16 @@ const defaultProps: IButtonProps = {
   theme: 'dark',
 };
 
-const Button = ({ children, className, theme, ...props }: IButtonProps) => {
+const Button = ({
+  children,
+  className,
+  theme,
+  onClick,
+  ...props
+}: IButtonProps) => {
   const bindClasses = classNames([styles.button, [styles[theme]], className]);
   return (
-    <button className={bindClasses} {...props}>
+    <button className={bindClasses} onClick={onClick} {...props}>
       {children}
     </button>
   );
