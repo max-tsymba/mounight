@@ -28,6 +28,7 @@ module.exports = {
             },
         },
         fontSize: {
+            'm': '18px',
             'md': '20px',
             'xs': '36px',
             'xl': '52px',
@@ -44,6 +45,7 @@ module.exports = {
         },
         spacing: {
             '0': '0px',
+            '4': '4px',
             '10': '10px',
             '12': '12px',
             '20': '20px',
@@ -53,6 +55,7 @@ module.exports = {
             '120': '120px',
         },
         maxWidth: {
+            '300': '300px',
             'full': '100%',
         },
         minWidth: {

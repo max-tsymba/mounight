@@ -4,23 +4,15 @@ import ReactDOM from 'react-dom';
 import IModalProps from './types';
 import styles from './styles.module.scss';
 
-const Modal = ({ children, show, onClose }: IModalProps) => {
+const Modal = ({ children, show }: IModalProps) => {
   const [isBrowser, setIsBrowser]: [boolean, any] = useState(false);
 
   useEffect(() => {
     setIsBrowser(true);
   }, []);
 
-  const handleCloseClick: any = (e: any) => {
-    e.preventDefault();
-    onClose();
-  };
-
   const modalContent: ReactNode = show ? (
-    <div className={styles.overlay}>
-      {children}
-      <button onClick={handleCloseClick}>Close</button>
-    </div>
+    <div className={styles.overlay}>{children}</div>
   ) : null;
 
   if (isBrowser)

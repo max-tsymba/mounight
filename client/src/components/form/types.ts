@@ -5,4 +5,5 @@ export default interface IFormProps {
   buttonText: string;
   onSubmit?: any;
   title: string;
+  onClose: any;
 }

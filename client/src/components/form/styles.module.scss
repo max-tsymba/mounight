@@ -1,5 +1,6 @@
 .form {
   width: 500px;
+  position: relative;
   max-width: 100%;
   color: black;
   text-align: center;
@@ -13,13 +14,18 @@
 }
 
 .form__title {
-  @apply text-xs leading-12;
+  @apply text-xs leading-12 mb-20;
 }
 
 .form__data {
-  @apply py-20;
+  @apply py-20 flex flex-col items-center;
 }
 
 .form__content {
   padding: 24px 16px;
+  width: 100%;
+}
+
+.close__btn {
+  @apply absolute top-10 right-10 w-40 h-40;
 }

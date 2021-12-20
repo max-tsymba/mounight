@@ -10,6 +10,7 @@ import user from '../../assets/static/user.png';
 import styles from './styles.module.scss';
 import Modal from '../modal';
 import Form from '../form';
+import Input from '../input';
 
 const Header = () => {
   const [showRegModal, setShowRegModal]: [boolean, any] = useState(false);
@@ -46,15 +47,26 @@ const Header = () => {
             )}
           </div>
 
-          <Modal show={showRegModal} onClose={() => setShowRegModal(false)}>
-            <Form buttonText="Sign Up" title="Sign Up">
-              <h1>Form</h1>
+          <Modal show={showRegModal}>
+            <Form
+              buttonText="Sign Up"
+              title="Sign Up"
+              onClose={() => setShowRegModal(false)}
+            >
+              <Input type="text" placeholder="Enter username" />
+              <Input type="text" placeholder="Enter email" />
+              <Input type="text" placeholder="Enter password" />
             </Form>
           </Modal>
 
-          <Modal show={showLoginModal} onClose={() => setShowLoginModal(false)}>
-            <Form buttonText="Log in" title="Log In">
-              <h1>Form</h1>
+          <Modal show={showLoginModal}>
+            <Form
+              buttonText="Log in"
+              title="Log In"
+              onClose={() => setShowLoginModal(false)}
+            >
+              <Input type="text" placeholder="Enter email" />
+              <Input type="text" placeholder="Enter password" />
             </Form>
           </Modal>
         </div>
