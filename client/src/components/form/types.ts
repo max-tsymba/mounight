@@ -4,4 +4,5 @@ export default interface IFormProps {
   children?: string | ReactNode;
   buttonText: string;
   onSubmit?: any;
+  title: string;
 }

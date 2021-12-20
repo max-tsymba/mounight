@@ -14,7 +14,7 @@ import Form from '../form';
 const Header = () => {
   const [showRegModal, setShowRegModal]: [boolean, any] = useState(false);
   const [showLoginModal, setShowLoginModal]: [boolean, any] = useState(false);
-  const isAuth = true;
+  const isAuth = false;
   return (
     <header className={styles.header}>
       <Container>
@@ -47,13 +47,13 @@ const Header = () => {
           </div>
 
           <Modal show={showRegModal} onClose={() => setShowRegModal(false)}>
-            <Form buttonText="Sign Up">
+            <Form buttonText="Sign Up" title="Sign Up">
               <h1>Form</h1>
             </Form>
           </Modal>
 
           <Modal show={showLoginModal} onClose={() => setShowLoginModal(false)}>
-            <Form buttonText="Log in">
+            <Form buttonText="Log in" title="Log In">
               <h1>Form</h1>
             </Form>
           </Modal>

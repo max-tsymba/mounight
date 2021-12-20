@@ -27,7 +27,6 @@ const UserHero = ({ username, createdAt, bgCover, avatar }: IUserHeroProps) => {
           <Avatar name={username} size="150px" round="50%" src={avatar} />
           <h1 className={styles.title}>{username}</h1>
           <p className={styles.subtitle}>Joined at {createdAt}</p>
-          {avatar}
         </div>
       </Container>
     </section>
