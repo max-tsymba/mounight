@@ -2,6 +2,8 @@ export default interface IInputProps {
   className?: string;
   type: HTMLInputTypes;
   placeholder?: string;
+  value?: string;
+  setValue?: any;
 }
 
 type HTMLInputTypes =

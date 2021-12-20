@@ -15,6 +15,9 @@ import Input from '../input';
 const Header = () => {
   const [showRegModal, setShowRegModal]: [boolean, any] = useState(false);
   const [showLoginModal, setShowLoginModal]: [boolean, any] = useState(false);
+  const [username, setUsername]: [string, any] = useState('');
+  const [email, setEmail]: [string, any] = useState('');
+  const [password, setPassword]: [string, any] = useState('');
   const isAuth = false;
   return (
     <header className={styles.header}>
@@ -53,9 +56,24 @@ const Header = () => {
               title="Sign Up"
               onClose={() => setShowRegModal(false)}
             >
-              <Input type="text" placeholder="Enter username" />
-              <Input type="text" placeholder="Enter email" />
-              <Input type="text" placeholder="Enter password" />
+              <Input
+                value={username}
+                setValue={setUsername}
+                type="text"
+                placeholder="Enter username"
+              />
+              <Input
+                value={email}
+                setValue={setEmail}
+                type="email"
+                placeholder="Enter email"
+              />
+              <Input
+                value={password}
+                setValue={setPassword}
+                type="password"
+                placeholder="Enter password"
+              />
             </Form>
           </Modal>
 
@@ -65,8 +83,18 @@ const Header = () => {
               title="Log In"
               onClose={() => setShowLoginModal(false)}
             >
-              <Input type="text" placeholder="Enter email" />
-              <Input type="text" placeholder="Enter password" />
+              <Input
+                value={email}
+                setValue={setEmail}
+                type="email"
+                placeholder="Enter email"
+              />
+              <Input
+                value={password}
+                setValue={setPassword}
+                type="password"
+                placeholder="Enter password"
+              />
             </Form>
           </Modal>
         </div>
