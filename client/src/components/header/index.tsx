@@ -11,6 +11,7 @@ import styles from './styles.module.scss';
 import Modal from '../modal';
 import Form from '../form';
 import Input from '../input';
+import AuthService from '../../services/AuthService';
 
 const Header = () => {
   const [showRegModal, setShowRegModal]: [boolean, any] = useState(false);
@@ -55,6 +56,7 @@ const Header = () => {
               buttonText="Sign Up"
               title="Sign Up"
               onClose={() => setShowRegModal(false)}
+              onSubmit={AuthService.registration(username, email, password)}
             >
               <Input
                 value={username}

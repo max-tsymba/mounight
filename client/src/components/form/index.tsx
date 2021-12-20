@@ -22,7 +22,7 @@ const Form = ({
       <div className={styles.form__content}>
         <h2 className={styles.form__title}>{title}</h2>
         <div className={styles.form__data}>{children}</div>
-        <Button onClick={onSubmit}>{buttonText}</Button>
+        <Button onClick={() => onSubmit}>{buttonText}</Button>
       </div>
       <button className={styles.close__btn} onClick={handleCloseClick}>
         <img src={close} alt="" />

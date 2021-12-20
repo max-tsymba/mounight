@@ -1,11 +1,11 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import mongoose from 'mongoose';
+import mongoose, { ConnectOptions } from 'mongoose';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import router from './routes/auth.router';
 import errorMiddleware from './middlewares/error.middleware';
-dotenv.config();
+dotenv.config({ path: __dirname + '/.env' });
 
 const app: any = express();
 const PORT: number = +process.env.PORT || 6000;

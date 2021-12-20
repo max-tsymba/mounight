@@ -1,5 +1,5 @@
-import $api from '@/API';
-import { IAuthResponse } from '@/models/response/AuthResponse';
+import $api from '../API';
+import { IAuthResponse } from '../models/response/AuthResponse';
 import { AxiosResponse } from 'axios';
 
 export default class AuthService {
