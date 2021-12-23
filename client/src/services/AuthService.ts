@@ -1,36 +1,74 @@
-import $api from '../API';
+import $api, { API_URL } from '../API';
 import { IAuthResponse } from '../models/response/AuthResponse';
-import { AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from 'axios';
+import { logout, setUser } from '../stores/reducers/user.reducer';
 
 export default class AuthService {
-  static async login(
-    email: string,
-    password: string,
-  ): Promise<AxiosResponse<IAuthResponse>> {
-    return $api.post<IAuthResponse>('/login', { email, password });
+  static login(email: string, password: string) {
+    return async (dispatch: any) => {
+      try {
+        const response: AxiosResponse<IAuthResponse, any> =
+          await $api.post<IAuthResponse>('/login', {
+            email,
+            password,
+          });
+        dispatch(setUser(response.data.user));
+        localStorage.setItem('token', response.data.accessToken);
+        return 1;
+      } catch (e: any) {
+        console.log(e.response?.data?.message);
+        return 0;
+      }
+    };
   }
 
-  static async registration(
-    username: string,
-    email: string,
-    password: string,
-  ): Promise<AxiosResponse<IAuthResponse>> {
-    return $api.post<IAuthResponse>(
-      '/registration',
-      {
-        username,
-        email,
-        password,
-      },
-      {
-        headers: {
-          'Content-type': 'application/json; charset=UTF-8',
-        },
-      },
-    );
+  static registration(username: string, email: string, password: string) {
+    return async (dispatch: any) => {
+      try {
+        const response: AxiosResponse<IAuthResponse, any> =
+          await $api.post<IAuthResponse>('/registration', {
+            username,
+            email,
+            password,
+          });
+        dispatch(setUser(response.data.user));
+        localStorage.setItem('token', response.data.accessToken);
+        return 1;
+        console.log(response.data);
+      } catch (e: any) {
+        console.log(e.response?.data?.message);
+        return 0;
+      }
+    };
   }
 
-  static async logout(): Promise<void> {
-    return $api.post('/logout');
+  static logout() {
+    return async (dispatch: any) => {
+      try {
+        const response: AxiosResponse<IAuthResponse, any> =
+          await $api.post<IAuthResponse>('/logout');
+        dispatch(logout());
+        localStorage.removeItem('token');
+        console.log(response);
+      } catch (e: any) {
+        console.log(e.response?.data?.message);
+      }
+    };
+  }
+
+  static checkAuth() {
+    return async (dispatch: any) => {
+      try {
+        const response = await axios.get<IAuthResponse>(`${API_URL}/refresh`, {
+          withCredentials: true,
+        });
+        dispatch(setUser(response.data.user));
+        localStorage.setItem('token', response.data.accessToken);
+        console.log(response.data);
+      } catch (e: any) {
+        console.log(e.response?.data?.message);
+        localStorage.removeItem('token');
+      }
+    };
   }
 }

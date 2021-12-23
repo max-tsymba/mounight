@@ -12,14 +12,15 @@ import Modal from '../modal';
 import Form from '../form';
 import Input from '../input';
 import AuthService from '../../services/AuthService';
+import IHeaderProps from './types';
 
-const Header = () => {
+const Header = ({ dispatch, isAuth }: IHeaderProps) => {
   const [showRegModal, setShowRegModal]: [boolean, any] = useState(false);
   const [showLoginModal, setShowLoginModal]: [boolean, any] = useState(false);
   const [username, setUsername]: [string, any] = useState('');
   const [email, setEmail]: [string, any] = useState('');
   const [password, setPassword]: [string, any] = useState('');
-  const isAuth = false;
+
   return (
     <header className={styles.header}>
       <Container>
@@ -37,9 +38,9 @@ const Header = () => {
                 >
                   <img src={user} alt="" />
                 </NavLink>
-                <NavLink to={RoutesNames.USER_PAGE}>
-                  <Button>Upload Image</Button>
-                </NavLink>
+                <Button onClick={() => dispatch(AuthService.logout())}>
+                  Log out
+                </Button>
               </>
             ) : (
               <>
@@ -72,9 +73,12 @@ const Header = () => {
                 placeholder="Enter password"
               />
               <Button
-                onClick={(result: any) => {
-                  result = AuthService.registration(username, email, password);
-                  console.log(result);
+                onClick={() => {
+                  dispatch(
+                    AuthService.registration(username, email, password),
+                  ).then((result: number) => {
+                    if (result) setShowRegModal(false);
+                  });
                 }}
               >
                 Sign Up
@@ -96,6 +100,17 @@ const Header = () => {
                 type="password"
                 placeholder="Enter password"
               />
+              <Button
+                onClick={() => {
+                  dispatch(AuthService.login(email, password)).then(
+                    (result: number) => {
+                      if (result) setShowLoginModal(false);
+                    },
+                  );
+                }}
+              >
+                Log In
+              </Button>
             </Form>
           </Modal>
         </div>

@@ -1,9 +1,9 @@
 import IRoute, { privateRoutes, publicRoutes, RoutesNames } from '../../routes';
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
+import { IRouterProps } from './types';
 
-const AppRouter = () => {
-  const isAuth = false;
+const AppRouter = ({ isAuth }: IRouterProps) => {
   return (
     <Switch>
       {isAuth &&

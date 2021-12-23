@@ -1,1 +1,4 @@
-export default interface IHeaderProps {}
+export default interface IHeaderProps {
+  dispatch?: any;
+  isAuth: boolean;
+}

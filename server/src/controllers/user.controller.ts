@@ -99,6 +99,7 @@ class UserController {
         maxAge,
         httpOnly: true,
       });
+      return res.json(userData);
     } catch (e: any) {
       next(e);
     }

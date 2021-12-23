@@ -14,14 +14,12 @@ export enum RoutesNames {
   HOME = '/',
   Page404 = '/404',
   USERS = '/users',
-  USER_PAGE = '/users/:userName'
+  USER_PAGE = '/users/:userName',
 }
 
 export const publicRoutes: IRoute[] = [
   { path: RoutesNames.HOME, component: Home, exact: true },
   { path: RoutesNames.Page404, component: Page404, exact: true },
-  { path: RoutesNames.USERS, component: Users, exact: true },
-  { path: RoutesNames.USER_PAGE, component: UserPage, exact: true },
 ];
 
 export const privateRoutes: IRoute[] = [

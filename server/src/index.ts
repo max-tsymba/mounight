@@ -1,11 +1,11 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
-import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import router from './routes/auth.router';
 import errorMiddleware from './middlewares/error.middleware';
 import path from 'path';
+import cors from 'cors';
 dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 const app: any = express();
@@ -14,7 +14,7 @@ const DB_URL: string = process.env.DB_URL;
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(cors({ credentials: true, origin: process.env.CLIENT_URL }));
 app.use('/api', router);
 app.use(errorMiddleware);
 
