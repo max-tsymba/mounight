@@ -52,12 +52,7 @@ const Header = () => {
           </div>
 
           <Modal show={showRegModal}>
-            <Form
-              buttonText="Sign Up"
-              title="Sign Up"
-              onClose={() => setShowRegModal(false)}
-              onSubmit={AuthService.registration(username, email, password)}
-            >
+            <Form title="Sign Up" onClose={() => setShowRegModal(false)}>
               <Input
                 value={username}
                 setValue={setUsername}
@@ -76,15 +71,19 @@ const Header = () => {
                 type="password"
                 placeholder="Enter password"
               />
+              <Button
+                onClick={(result: any) => {
+                  result = AuthService.registration(username, email, password);
+                  console.log(result);
+                }}
+              >
+                Sign Up
+              </Button>
             </Form>
           </Modal>
 
           <Modal show={showLoginModal}>
-            <Form
-              buttonText="Log in"
-              title="Log In"
-              onClose={() => setShowLoginModal(false)}
-            >
+            <Form title="Log In" onClose={() => setShowLoginModal(false)}>
               <Input
                 value={email}
                 setValue={setEmail}
