@@ -33,8 +33,8 @@ export default class AuthService {
           });
         dispatch(setUser(response.data.user));
         localStorage.setItem('token', response.data.accessToken);
-        return 1;
         console.log(response.data);
+        return 1;
       } catch (e: any) {
         console.log(e.response?.data?.message);
         return 0;
