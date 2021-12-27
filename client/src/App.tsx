@@ -8,7 +8,6 @@ import AuthService from './services/AuthService';
 import { RootState } from './stores';
 
 const App = () => {
-  const isAuth = useSelector((state: RootState) => state.user.isAuth);
   const dispatch: Dispatch<any> = useDispatch();
 
   useEffect(() => {
@@ -17,10 +16,13 @@ const App = () => {
     }
   }, [dispatch]);
 
+  const isLoading = useSelector((state: RootState) => state.loader.isLoading);
+  if (isLoading) return <div>Loading...</div>;
+
   return (
     <BrowserRouter>
-      <Header dispatch={dispatch} isAuth={isAuth} />
-      <AppRouter isAuth={isAuth} />
+      <Header dispatch={dispatch} />
+      <AppRouter />
     </BrowserRouter>
   );
 };

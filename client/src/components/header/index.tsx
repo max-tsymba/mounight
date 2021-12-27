@@ -12,14 +12,17 @@ import Modal from '../modal';
 import Form from '../form';
 import Input from '../input';
 import AuthService from '../../services/AuthService';
+import { RootState } from '@/stores';
+import { useSelector } from 'react-redux';
 import IHeaderProps from './types';
 
-const Header = ({ dispatch, isAuth }: IHeaderProps) => {
+const Header = ({ dispatch }: IHeaderProps) => {
   const [showRegModal, setShowRegModal]: [boolean, any] = useState(false);
   const [showLoginModal, setShowLoginModal]: [boolean, any] = useState(false);
   const [username, setUsername]: [string, any] = useState('');
   const [email, setEmail]: [string, any] = useState('');
   const [password, setPassword]: [string, any] = useState('');
+  const isAuth = useSelector((state: RootState) => state.user.isAuth);
 
   return (
     <header className={styles.header}>

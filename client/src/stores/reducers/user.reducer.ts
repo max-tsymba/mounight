@@ -1,27 +1,36 @@
-const SET_USER = 'SET_USER';
-const LOGOUT = 'LOGOUT';
+enum userCases {
+  SET_USER = 'SET_USER',
+  LOGOUT = 'LOGOUT',
+}
 export interface IDefaultState {
   currentUser: any;
-  isAuth: boolean;
+  isAuth?: boolean;
 }
 
-const defaultState: IDefaultState = {
-  currentUser: {},
-  isAuth: false,
-};
+const token = localStorage.getItem('token');
+
+const defaultState: IDefaultState = token
+  ? {
+      currentUser: {},
+      isAuth: true,
+    }
+  : {
+      currentUser: {},
+      isAuth: false,
+    };
 
 export default function userReducer(
   state: IDefaultState = defaultState,
   action: any,
 ) {
   switch (action.type) {
-    case SET_USER:
+    case userCases.SET_USER:
       return {
         ...state,
         currentUser: action.payload.user,
         isAuth: true,
       };
-    case LOGOUT:
+    case userCases.LOGOUT:
       return {
         ...state,
         currentUser: {},
@@ -32,5 +41,8 @@ export default function userReducer(
   }
 }
 
-export const setUser = (user: any) => ({ type: SET_USER, payload: user });
-export const logout = () => ({ type: LOGOUT });
+export const setUser = (user: any) => ({
+  type: userCases.SET_USER,
+  payload: user,
+});
+export const logout = () => ({ type: userCases.LOGOUT });
