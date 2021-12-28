@@ -97,6 +97,15 @@ class UserService {
     };
   }
 
+  async getUser(id: string) {
+    const user: any = await User.findById(id).exec();
+    const { password, email, is_activated, activation_link, ...others }: any =
+      user._doc;
+    if (!user) throw ApiError.BadRequest('User not found!');
+
+    return others;
+  }
+
   async getAllUser() {
     const users: any = await User.find();
     return users;
