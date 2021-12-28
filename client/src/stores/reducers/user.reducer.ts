@@ -27,7 +27,7 @@ export default function userReducer(
     case userCases.SET_USER:
       return {
         ...state,
-        currentUser: action.payload.user,
+        currentUser: action.payload,
         isAuth: true,
       };
     case userCases.LOGOUT:

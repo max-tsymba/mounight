@@ -6,7 +6,7 @@ import Container from '../container';
 // @ts-ignore
 import logo from '../../assets/static/logo.svg';
 // @ts-ignore
-import user from '../../assets/static/user.png';
+import userIcon from '../../assets/static/user.png';
 import styles from './styles.module.scss';
 import Modal from '../modal';
 import Form from '../form';
@@ -23,6 +23,7 @@ const Header = ({ dispatch }: IHeaderProps) => {
   const [email, setEmail]: [string, any] = useState('');
   const [password, setPassword]: [string, any] = useState('');
   const isAuth = useSelector((state: RootState) => state.user.isAuth);
+  const user = useSelector((state: RootState) => state.user);
 
   return (
     <header className={styles.header}>
@@ -36,10 +37,10 @@ const Header = ({ dispatch }: IHeaderProps) => {
             {isAuth ? (
               <>
                 <NavLink
-                  to={RoutesNames.USER_PAGE}
+                  to={RoutesNames.USERS + `/${user.currentUser.id}`}
                   className={styles.header__account}
                 >
-                  <img src={user} alt="" />
+                  <img src={userIcon} alt="" />
                 </NavLink>
                 <Button onClick={() => dispatch(AuthService.logout())}>
                   Log out

@@ -15,6 +15,7 @@ export default class AuthService {
           });
         dispatch(setUser(response.data.user));
         localStorage.setItem('token', response.data.accessToken);
+        console.log(response.data.user);
         return 1;
       } catch (e: any) {
         console.log(e.response?.data?.message);

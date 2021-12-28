@@ -14,7 +14,7 @@ export enum RoutesNames {
   HOME = '/',
   Page404 = '/404',
   USERS = '/users',
-  USER_PAGE = '/users/:userName',
+  USER_PAGE = '/users/:userId',
 }
 
 export const publicRoutes: IRoute[] = [
