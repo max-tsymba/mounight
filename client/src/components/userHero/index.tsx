@@ -16,17 +16,26 @@ const defaultProps: IUserHeroProps = {
   bgCover: bg,
   createdAt: '20 dec 2021',
   avatar: ava,
+  isCurrentUser: true,
 };
 
-const UserHero = ({ username, createdAt, bgCover, avatar }: IUserHeroProps) => {
+const UserHero = ({
+  username,
+  createdAt,
+  bgCover,
+  avatar,
+  isCurrentUser,
+}: IUserHeroProps) => {
   return (
     <section
       className={styles.hero}
       style={{ backgroundImage: `url(${bgCover})` }}
     >
-      <NavLink to={RoutesNames.USER_SETTINGS}>
-        <Knob className={styles.hero__btn}>Edit profile</Knob>
-      </NavLink>
+      {isCurrentUser && (
+        <NavLink to={RoutesNames.USER_SETTINGS}>
+          <Knob className={styles.hero__btn}>Edit profile</Knob>
+        </NavLink>
+      )}
       <div className={styles.hero__rect}></div>
       <Container>
         <div className={styles.hero__inner}>
