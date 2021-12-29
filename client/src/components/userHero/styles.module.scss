@@ -10,10 +10,22 @@
   @apply flex flex-col items-center relative z-20;
 }
 
+.hero__btn {
+  @apply absolute top-20 right-20 z-30 invisible opacity-0 duration-300;
+}
+
 .title {
   @apply text-xs leading-12 font-bold tracking-wide mt-20;
 }
 
 .subtitle {
   @apply py-12 leading-12 tracking-wider opacity-80;
+}
+
+.hero {
+  &:hover {
+    .hero__btn {
+      @apply visible opacity-100;
+    }
+  }
 }

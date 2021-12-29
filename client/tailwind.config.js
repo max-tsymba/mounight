@@ -28,6 +28,8 @@ module.exports = {
             },
         },
         fontSize: {
+            's': '14px',
+            'sm': '16px',
             'm': '18px',
             'md': '20px',
             'xs': '36px',
