@@ -3,6 +3,7 @@ import React from 'react';
 import Page404 from '../pages/404';
 import Users from '../pages/Users';
 import UserPage from '../pages/UserPage';
+import UserSettings from '../pages/UserSettings';
 
 export default interface IRoute {
   path: string;
@@ -15,6 +16,7 @@ export enum RoutesNames {
   Page404 = '/404',
   USERS = '/users',
   USER_PAGE = '/users/:userId',
+  USER_SETTINGS = '/account/settings',
 }
 
 export const publicRoutes: IRoute[] = [
@@ -27,4 +29,5 @@ export const privateRoutes: IRoute[] = [
   { path: RoutesNames.Page404, component: Page404, exact: true },
   { path: RoutesNames.USERS, component: Users, exact: true },
   { path: RoutesNames.USER_PAGE, component: UserPage, exact: true },
+  { path: RoutesNames.USER_SETTINGS, component: UserSettings, exact: true },
 ];

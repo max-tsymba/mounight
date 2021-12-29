@@ -8,6 +8,8 @@ import ava from '../../assets/static/ava.png';
 import styles from './styles.module.scss';
 import Avatar from 'react-avatar';
 import Knob from '../knob';
+import { NavLink } from 'react-router-dom';
+import { RoutesNames } from '../../routes';
 
 const defaultProps: IUserHeroProps = {
   username: 'Username',
@@ -22,7 +24,9 @@ const UserHero = ({ username, createdAt, bgCover, avatar }: IUserHeroProps) => {
       className={styles.hero}
       style={{ backgroundImage: `url(${bgCover})` }}
     >
-      <Knob className={styles.hero__btn}>Edit profile</Knob>
+      <NavLink to={RoutesNames.USER_SETTINGS}>
+        <Knob className={styles.hero__btn}>Edit profile</Knob>
+      </NavLink>
       <div className={styles.hero__rect}></div>
       <Container>
         <div className={styles.hero__inner}>
