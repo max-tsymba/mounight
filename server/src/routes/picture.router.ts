@@ -1,6 +1,11 @@
 import * as express from 'express';
-import authMiddleware from '../middlewares/auth.middleware';
+import pictureController from '../controllers/picture.controller';
 
-const router: express.Router = express.Router();
+const router: any = express.Router();
+
+router.post('/upload', pictureController.create);
+router.get('/pictures', pictureController.getAll);
+router.get('/picture:id', pictureController.getOne);
+router.delete('/delete/picture:id', pictureController.delete);
 
 export default router;

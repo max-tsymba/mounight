@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors({ credentials: true, origin: process.env.CLIENT_URL }));
 app.use('/api/auth', authRouter);
-app.use('api/files', pictureRouter);
+app.use('/api/media', pictureRouter);
 app.use(errorMiddleware);
 
 const start: any = async () => {
