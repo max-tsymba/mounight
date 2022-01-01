@@ -17,12 +17,17 @@ class PictureService {
     return medias;
   }
 
-  async getOne(id: string) {
+  async getOne(id: string): Promise<IPicture> {
     const media: any = await Picture.findById(id).exec();
     return media;
   }
 
-  async delete(id: string) {
+  async getAllByUser(user_id: string): Promise<IPicture[]> {
+    const media: any = await Picture.find({ user: user_id });
+    return media;
+  }
+
+  async delete(id: string): Promise<string> {
     const media: any = await Picture.findByIdAndDelete(id).exec();
     return media._id;
   }

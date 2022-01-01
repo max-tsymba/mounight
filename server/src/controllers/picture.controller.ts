@@ -1,17 +1,29 @@
 import express from 'express';
+import fs from 'fs';
 import pictureService from '../services/pictureService';
 
 class PictureController {
-  async create(
-    req: express.Request,
-    res: express.Response,
-    next: express.NextFunction,
-  ) {
+  async create(req: any, res: express.Response, next: express.NextFunction) {
     try {
-      const { name, type, user }: { name: string; type: string; user: any } =
-        req.body;
+      const file: any = req.files.file;
+      const user: any = req.params.id;
+      const { name }: { name: string } = file;
+      const dir = `B:/Developments/Portfolio/mounight/server/src/files/${user}`;
 
-      const newMedia: any = await pictureService.create({ name, type, user });
+      // const path = `${process.env.FILE_PATH}\\${user}\\${name}`;
+      if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir);
+      }
+      const path = `B:/Developments/Portfolio/mounight/server/src/files/${user}/${file.name}`;
+      file.mv(path);
+
+      const type = file.name.split('.').pop();
+      const newMedia: any = await pictureService.create({
+        name,
+        type,
+        user,
+        path,
+      });
       return res.json(newMedia);
     } catch (e: any) {
       next(e);
@@ -38,6 +50,19 @@ class PictureController {
   ) {
     try {
       const media = await pictureService.getOne(req.params.id);
+      return res.json(media);
+    } catch (e: any) {
+      next(e);
+    }
+  }
+
+  async getAllByUser(
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction,
+  ) {
+    try {
+      const media = await pictureService.getAllByUser(req.params.id);
       return res.json(media);
     } catch (e: any) {
       next(e);
