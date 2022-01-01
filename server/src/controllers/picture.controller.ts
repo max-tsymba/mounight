@@ -1,5 +1,6 @@
 import express from 'express';
 import fs from 'fs';
+import path from 'path';
 import pictureService from '../services/pictureService';
 
 class PictureController {
@@ -8,21 +9,24 @@ class PictureController {
       const file: any = req.files.file;
       const user: any = req.params.id;
       const { name }: { name: string } = file;
-      const dir = `B:/Developments/Portfolio/mounight/server/src/files/${user}`;
+      // const dir = `B:/Developments/Portfolio/mounight/server/src/files/${user}`;
+      const dir = path.resolve(__dirname, '..', 'files', user);
 
       // const path = `${process.env.FILE_PATH}\\${user}\\${name}`;
       if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir);
       }
-      const path = `B:/Developments/Portfolio/mounight/server/src/files/${user}/${file.name}`;
-      file.mv(path);
+      const file_path = `${dir}/${file.name}`;
+      file.mv(file_path);
+
+      const path_for_client = `${user}/${file.name}`;
 
       const type = file.name.split('.').pop();
       const newMedia: any = await pictureService.create({
         name,
         type,
         user,
-        path,
+        path: path_for_client,
       });
       return res.json(newMedia);
     } catch (e: any) {
