@@ -12,7 +12,6 @@ const LogModal = ({ show, setShow }: IModalProps) => {
   const [password, setPassword]: [string, any] = useState('');
   const [isError, setIsError]: [boolean, any] = useState(false);
   const dispatch: any = useDispatch();
-  console.log(email);
   return (
     <Modal show={show} setShow={setShow} setErrors={() => setIsError(false)}>
       <Form title="Log In">

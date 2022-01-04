@@ -30,7 +30,7 @@ class UserService {
     let service: mailService = new mailService();
     await service.sendActivationMail(
       email,
-      `${process.env.API_URL}/api/activate/${activation_link}`,
+      `${process.env.API_URL}/api/auth/activate/${activation_link}`,
     );
 
     const userDto: IUserDto = new UserDto(newUser);

@@ -6,6 +6,7 @@ import Form from '../form';
 import Input from '../input';
 import Modal from '../modal';
 import IModalProps from '../modal/types';
+import { useHistory } from 'react-router-dom';
 
 const SignModal = ({ show, setShow }: IModalProps) => {
   const [username, setUsername]: [string, any] = useState('');
@@ -13,6 +14,7 @@ const SignModal = ({ show, setShow }: IModalProps) => {
   const [password, setPassword]: [string, any] = useState('');
   const [isError, setIsError]: [boolean, any] = useState(false);
   const dispatch: any = useDispatch();
+  const history = useHistory();
   return (
     <Modal show={show} setShow={setShow} setErrors={() => setIsError(false)}>
       <Form title="Sign Up">
@@ -45,6 +47,7 @@ const SignModal = ({ show, setShow }: IModalProps) => {
                 if (result) {
                   setShow();
                   setIsError(false);
+                  history.push('/activation');
                 } else setIsError(true);
               },
             );
