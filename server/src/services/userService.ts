@@ -74,6 +74,27 @@ class UserService {
     return token;
   }
 
+  async update(body: any) {
+    if (body.password) {
+      try {
+        body.password = await bcrypt.hash(body.password, 3);
+      } catch (e: any) {
+        throw ApiError.BadRequest('Error while changing password');
+      }
+
+      try {
+        const user: any = await User.findByIdAndUpdate(body._id, {
+          $set: body,
+        });
+        return user;
+      } catch (e: any) {
+        throw ApiError.UnauthorizedError();
+      }
+    } else {
+      throw ApiError.BadRequest('U not have permissions');
+    }
+  }
+
   async refresh(refreshToken: string) {
     if (!refreshToken) {
       throw ApiError.UnauthorizedError();

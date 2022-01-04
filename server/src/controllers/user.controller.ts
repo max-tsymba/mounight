@@ -72,6 +72,19 @@ class UserController {
     }
   }
 
+  async update(
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction,
+  ) {
+    try {
+      const user = await userService.update(req.body);
+      return res.json(user);
+    } catch (e: any) {
+      next(e);
+    }
+  }
+
   async activate(
     req: express.Request,
     res: express.Response,
