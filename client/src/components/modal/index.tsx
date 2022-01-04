@@ -3,16 +3,23 @@ import { ReactNode, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import IModalProps from './types';
 import styles from './styles.module.scss';
+// @ts-ignore
+import close from '../../assets/static/close.png';
 
-const Modal = ({ children, show, setShow }: IModalProps) => {
+const Modal = ({ children, show, setShow, setErrors }: IModalProps) => {
   const [isBrowser, setIsBrowser]: [boolean, any] = useState(false);
 
   const handleCloseClick: any = (e: any) => {
     e.preventDefault();
     if (e.target.className === styles.overlay) {
-      setShow();
+      handleClick();
       document.body.style.overflowY = 'auto';
     }
+  };
+
+  const handleClick: any = () => {
+    setShow();
+    setErrors();
   };
 
   if (show) document.body.style.overflowY = 'hidden';
@@ -23,7 +30,12 @@ const Modal = ({ children, show, setShow }: IModalProps) => {
 
   const modalContent: ReactNode = show ? (
     <div className={styles.overlay} onClick={handleCloseClick}>
-      {children}
+      <div className="relative">
+        {children}
+        <button className={styles.close__btn} onClick={handleClick}>
+          <img src={close} alt="" />
+        </button>
+      </div>
     </div>
   ) : null;
 

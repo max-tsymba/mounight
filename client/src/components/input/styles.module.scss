@@ -1,3 +1,11 @@
 .input {
-  @apply w-full max-w-300 my-20 p-4 outline-none text-black text-m relative border-b;
+  @apply w-full max-w-300 p-4 outline-none text-black text-m relative border-b;
+}
+
+label {
+  @apply w-full max-w-300 py-20 relative my-4;
+}
+
+.error {
+  @apply absolute bottom-0 text-ns text-red;
 }

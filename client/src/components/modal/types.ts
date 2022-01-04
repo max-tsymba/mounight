@@ -4,4 +4,5 @@ export default interface IModalProps {
   children?: string | ReactNode;
   show: boolean;
   setShow: any;
+  setErrors?: any;
 }

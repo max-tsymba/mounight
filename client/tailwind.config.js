@@ -13,6 +13,7 @@ module.exports = {
                 DEFAULT: 'black',
                 'transition': 'rgba(0, 0, 0, 0.25)',
             },
+            'red': '#F05454'
         },
         screens: {
             sm: '576px',
@@ -28,6 +29,7 @@ module.exports = {
             },
         },
         fontSize: {
+            'ns': '10px',
             's': '14px',
             'sm': '16px',
             'm': '18px',

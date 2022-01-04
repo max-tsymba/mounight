@@ -1,3 +1,7 @@
 .overlay {
   @apply fixed w-screen h-screen bg-black-transition top-0 left-0 right-0 bottom-0 text-white flex items-center justify-center blur;
 }
+
+.close__btn {
+  @apply absolute top-10 right-10 w-40 h-40 z-40;
+}

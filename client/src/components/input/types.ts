@@ -4,6 +4,7 @@ export default interface IInputProps {
   placeholder?: string;
   value?: string;
   setValue?: any;
+  setError?: boolean;
 }
 
 type HTMLInputTypes =
