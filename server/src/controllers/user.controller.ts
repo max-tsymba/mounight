@@ -1,4 +1,4 @@
-import express, { NextFunction } from 'express';
+import express from 'express';
 import userService from '../services/userService';
 import { Result, ValidationError, validationResult } from 'express-validator';
 import ApiError from '../exceptions/api.error';

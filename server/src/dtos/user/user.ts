@@ -1,6 +1,9 @@
-export default interface IUserDto {
+export interface IUserDto {
+  id: any;
   username: string;
   email: string;
-  id: any;
   isActivated: boolean;
+  avatar: string;
+  bg_cover: string;
+  createdAt: string;
 }

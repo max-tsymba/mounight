@@ -5,7 +5,7 @@ import * as uuid from 'uuid';
 import mailService from './mailService';
 import tokenService from './tokenService';
 import UserDto from '../dtos/user/user.dto';
-import IUserDto from '../dtos/user/user';
+import { IUserDto } from '../dtos/user/user';
 import ApiError from '../exceptions/api.error';
 
 class UserService {
@@ -33,10 +33,10 @@ class UserService {
       `${process.env.API_URL}/api/activate/${activation_link}`,
     );
 
-    const userDto: IUserDto = new UserDto(newUser); //id, email, password
+    const userDto: IUserDto = new UserDto(newUser);
     const tokens: any = tokenService.generateTokens({ ...userDto });
 
-    await tokenService.saveToken(userDto.id, tokens.refreshToken);
+    await tokenService.saveToken(newUser.id, tokens.refreshToken);
 
     return {
       ...tokens,
