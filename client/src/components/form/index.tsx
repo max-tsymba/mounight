@@ -8,6 +8,7 @@ const Form = ({ children, title, onClose }: IFormProps) => {
   const handleCloseClick: any = (e: any) => {
     e.preventDefault();
     onClose();
+    document.body.style.overflowY = 'auto';
   };
 
   return (

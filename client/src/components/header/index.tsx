@@ -8,20 +8,16 @@ import logo from '../../assets/static/logo.svg';
 // @ts-ignore
 import userIcon from '../../assets/static/user.png';
 import styles from './styles.module.scss';
-import Modal from '../modal';
-import Form from '../form';
-import Input from '../input';
 import AuthService from '../../services/AuthService';
 import { RootState } from '@/stores';
 import { useSelector } from 'react-redux';
 import IHeaderProps from './types';
+import SignModal from '../registrationModal';
+import LogModal from '../loginModal';
 
 const Header = ({ dispatch }: IHeaderProps) => {
   const [showRegModal, setShowRegModal]: [boolean, any] = useState(false);
   const [showLoginModal, setShowLoginModal]: [boolean, any] = useState(false);
-  const [username, setUsername]: [string, any] = useState('');
-  const [email, setEmail]: [string, any] = useState('');
-  const [password, setPassword]: [string, any] = useState('');
   const isAuth = useSelector((state: RootState) => state.user.isAuth);
   const user = useSelector((state: RootState) => state.user);
 
@@ -56,67 +52,15 @@ const Header = ({ dispatch }: IHeaderProps) => {
             )}
           </div>
 
-          <Modal show={showRegModal}>
-            <Form title="Sign Up" onClose={() => setShowRegModal(false)}>
-              <Input
-                value={username}
-                setValue={setUsername}
-                type="text"
-                placeholder="Enter username"
-              />
-              <Input
-                value={email}
-                setValue={setEmail}
-                type="email"
-                placeholder="Enter email"
-              />
-              <Input
-                value={password}
-                setValue={setPassword}
-                type="password"
-                placeholder="Enter password"
-              />
-              <Button
-                onClick={() => {
-                  dispatch(
-                    AuthService.registration(username, email, password),
-                  ).then((result: number) => {
-                    if (result) setShowRegModal(false);
-                  });
-                }}
-              >
-                Sign Up
-              </Button>
-            </Form>
-          </Modal>
+          <SignModal
+            show={showRegModal}
+            setShow={() => setShowRegModal(false)}
+          />
 
-          <Modal show={showLoginModal}>
-            <Form title="Log In" onClose={() => setShowLoginModal(false)}>
-              <Input
-                value={email}
-                setValue={setEmail}
-                type="email"
-                placeholder="Enter email"
-              />
-              <Input
-                value={password}
-                setValue={setPassword}
-                type="password"
-                placeholder="Enter password"
-              />
-              <Button
-                onClick={() => {
-                  dispatch(AuthService.login(email, password)).then(
-                    (result: number) => {
-                      if (result) setShowLoginModal(false);
-                    },
-                  );
-                }}
-              >
-                Log In
-              </Button>
-            </Form>
-          </Modal>
+          <LogModal
+            show={showLoginModal}
+            setShow={() => setShowLoginModal(false)}
+          />
         </div>
       </Container>
     </header>
