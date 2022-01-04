@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import UserHero from '../components/userHero';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { setUsers } from '../stores/reducers/users.reducer';
+import { setUserPull } from '../stores/reducers/users.reducer';
 // @ts-ignore
 import error from '../assets/static/error.png';
 import Container from '../components/container';
@@ -12,21 +12,15 @@ import MediaList from '../components/mediaList';
 import { setFiles } from '../stores/reducers/file.reducer';
 import { API_AUTH_URL, API_MEDIA_URL, SERVER_URL } from '../utils/conts';
 
-export interface ICurrentUser {
-  username: string;
-  email?: string;
-  id?: string;
-  isActivated?: boolean;
-}
-
 const UserPage = () => {
   const user = useSelector((state: RootState) => state.user);
-  const searchedUser = useSelector((state: any) => state.users);
-  const userFiles = useSelector((state: RootState) => state.media);
+  const users = useSelector((state: RootState) => state.users);
+  const userMedia = useSelector((state: RootState) => state.media);
   const dispatch: Dispatch<any> = useDispatch();
   const { userId }: any = useParams();
   const [responseStatus, setResponseStatus] = useState<number>(200);
   const [loading, setLoading] = useState<boolean>(true);
+  let joinDate = '';
 
   useEffect((): any => {
     let cleanupFunction = false;
@@ -35,7 +29,8 @@ const UserPage = () => {
         const response: any = await axios.get(
           `${API_AUTH_URL}/users/${userId}`,
         );
-        dispatch(setUsers(response.data));
+        dispatch(setUserPull(response.data));
+        console.log(response.data);
 
         if (!cleanupFunction) setResponseStatus(response.status);
       } catch (e: any) {
@@ -49,6 +44,7 @@ const UserPage = () => {
 
   useEffect((): any => {
     let cleanupFunction = false;
+
     const fetchMedia = async () => {
       try {
         const response: any = await axios.get(
@@ -65,13 +61,28 @@ const UserPage = () => {
     return () => (cleanupFunction = true);
   }, [dispatch, userId]);
 
-  const { username }: any = searchedUser.user;
-  const media: any = userFiles.files;
-  const isCurrentUser = user.currentUser.id === searchedUser.user._id;
+  const { username, createdAt, avatar, bg_cover }: any = users.userPull;
+  const media: any = userMedia.files;
+  const isCurrentUser = user.currentUser.id === users.userPull._id;
+
+  if (responseStatus === 200 && !loading) {
+    const date = new Date(createdAt);
+    joinDate = date.toLocaleDateString('en-us', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+  }
 
   return responseStatus === 200 && !loading ? (
     <>
-      <UserHero username={username} isCurrentUser={isCurrentUser} />
+      <UserHero
+        username={username}
+        isCurrentUser={isCurrentUser}
+        createdAt={joinDate}
+        avatar={avatar}
+        bgCover={bg_cover}
+      />
       <MediaList />
       {media.map((item: any) => (
         <img src={`${SERVER_URL}/${item.path}`} key={item.path} alt="" />

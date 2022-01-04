@@ -3,11 +3,11 @@ enum FilesAction {
 }
 
 export interface IDefaultFilesState {
-  files: any[];
+  filePull: any[];
 }
 
 const defaultState: IDefaultFilesState = {
-  files: [],
+  filePull: [],
 };
 
 export default function filesReducer(
@@ -16,13 +16,13 @@ export default function filesReducer(
 ) {
   switch (action.type) {
     case FilesAction.SET_FILES:
-      return { ...state, files: action.payload };
+      return { ...state, filePull: action.payload };
     default:
       return state;
   }
 }
 
-export const setAllFiles = (files: any) => ({
+export const setAllFiles = (filePull: any) => ({
   type: FilesAction.SET_FILES,
-  payload: files,
+  payload: filePull,
 });

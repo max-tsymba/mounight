@@ -1,10 +1,6 @@
 import React from 'react';
 import Container from '../container';
 import IUserHeroProps from './types';
-// @ts-ignore
-import bg from '../../assets/static/bg.png';
-// @ts-ignore
-import ava from '../../assets/static/ava.png';
 import styles from './styles.module.scss';
 import Avatar from 'react-avatar';
 import Knob from '../knob';
@@ -13,9 +9,9 @@ import { RoutesNames } from '../../routes';
 
 const defaultProps: IUserHeroProps = {
   username: 'Username',
-  bgCover: bg,
+  bgCover: '',
   createdAt: '20 dec 2021',
-  avatar: ava,
+  avatar: '',
   isCurrentUser: true,
 };
 

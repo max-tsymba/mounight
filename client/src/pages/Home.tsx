@@ -27,7 +27,7 @@ const Home: FunctionComponent = () => {
     return () => (cleanupFunction = true);
   }, [dispatch]);
 
-  const allMedia = usersFiles.files;
+  const allMedia = usersFiles.filePull;
 
   if (loading) return <div>Loading...</div>;
 
