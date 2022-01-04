@@ -30,7 +30,7 @@ const LogModal = ({ show, setShow }: IModalProps) => {
           onClick={() => {
             dispatch(AuthService.login(email, password)).then(
               (result: number) => {
-                if (result) setShow;
+                if (result) setShow();
               },
             );
           }}

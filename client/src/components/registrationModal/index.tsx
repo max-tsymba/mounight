@@ -30,7 +30,7 @@ const SignModal = ({ show, setShow }: IModalProps) => {
           onClick={() => {
             dispatch(AuthService.registration(username, email, password)).then(
               (result: number) => {
-                if (result) setShow;
+                if (result) setShow();
               },
             );
           }}
