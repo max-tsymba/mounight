@@ -4,13 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import UserHero from '../components/userHero';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { API_MEDIA_URL, API_URL, SERVER_URL } from '../API';
 import { setUsers } from '../stores/reducers/users.reducer';
 // @ts-ignore
 import error from '../assets/static/error.png';
 import Container from '../components/container';
 import MediaList from '../components/mediaList';
 import { setFiles } from '../stores/reducers/file.reducer';
+import { API_AUTH_URL, API_MEDIA_URL, SERVER_URL } from '../utils/conts';
 
 export interface ICurrentUser {
   username: string;
@@ -32,7 +32,9 @@ const UserPage = () => {
     let cleanupFunction = false;
     const fetchUser = async () => {
       try {
-        const response: any = await axios.get(`${API_URL}/users/${userId}`);
+        const response: any = await axios.get(
+          `${API_AUTH_URL}/users/${userId}`,
+        );
         dispatch(setUsers(response.data));
 
         if (!cleanupFunction) setResponseStatus(response.status);

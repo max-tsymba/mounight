@@ -2,9 +2,9 @@ import Hero from '../components/hero';
 import React, { Dispatch, FunctionComponent, useEffect, useState } from 'react';
 import { RootState } from '../stores';
 import { useSelector, useDispatch } from 'react-redux';
-import { API_MEDIA_URL, SERVER_URL } from '../API';
 import axios from 'axios';
 import { setAllFiles } from '../stores/reducers/files.reducer';
+import { API_MEDIA_URL, SERVER_URL } from '../utils/conts';
 
 const Home: FunctionComponent = () => {
   const usersFiles = useSelector((state: RootState) => state.medias);

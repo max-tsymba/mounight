@@ -1,13 +1,10 @@
 import { IAuthResponse } from '@/models/response/AuthResponse';
+import { API_AUTH_URL } from '../utils/conts';
 import axios, { AxiosResponse } from 'axios';
-
-export const SERVER_URL = `http://localhost:5000`;
-export const API_URL = `http://localhost:5000/api/auth`;
-export const API_MEDIA_URL = `http://localhost:5000/api/media`;
 
 const $api = axios.create({
   withCredentials: true,
-  baseURL: API_URL,
+  baseURL: API_AUTH_URL,
 });
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -30,7 +27,7 @@ $api.interceptors.response.use(
       originalRequest._isRetry = true;
       try {
         const response: AxiosResponse<IAuthResponse, any> =
-          await axios.get<IAuthResponse>(`${API_URL}/refresh`, {
+          await axios.get<IAuthResponse>(`${API_AUTH_URL}/refresh`, {
             withCredentials: true,
           });
         localStorage.setItem('token', response.data.accessToken);

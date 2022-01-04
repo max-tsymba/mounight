@@ -1,8 +1,9 @@
-import $api, { API_URL } from '../API';
+import $api from '../API';
 import { IAuthResponse } from '../models/response/AuthResponse';
 import axios, { AxiosResponse } from 'axios';
 import { logout, setUser } from '../stores/reducers/user.reducer';
 import { deleteLoader, setLoader } from '../stores/reducers/loader.reducer';
+import { API_AUTH_URL } from '../utils/conts';
 
 export default class AuthService {
   static login(email: string, password: string) {
@@ -63,7 +64,7 @@ export default class AuthService {
       dispatch(setLoader());
       try {
         const response: AxiosResponse<IAuthResponse, any> =
-          await axios.get<IAuthResponse>(`${API_URL}/refresh`, {
+          await axios.get<IAuthResponse>(`${API_AUTH_URL}/refresh`, {
             withCredentials: true,
           });
         dispatch(setUser(response.data.user));
