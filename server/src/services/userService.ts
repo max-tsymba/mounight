@@ -81,16 +81,14 @@ class UserService {
       } catch (e: any) {
         throw ApiError.BadRequest('Error while changing password');
       }
+    }
 
-      try {
-        const user: any = await User.findByIdAndUpdate(body._id, {
-          $set: body,
-        });
-        return user;
-      } catch (e: any) {
-        throw ApiError.UnauthorizedError();
-      }
-    } else {
+    try {
+      const user: any = await User.findByIdAndUpdate(body._id, {
+        $set: body,
+      });
+      return user;
+    } catch (e: any) {
       throw ApiError.BadRequest('U not have permissions');
     }
   }
@@ -130,6 +128,11 @@ class UserService {
   async getAllUser() {
     const users: any = await User.find();
     return users;
+  }
+
+  async delete(id: string) {
+    const user: any = await User.findByIdAndDelete(id);
+    return user;
   }
 }
 

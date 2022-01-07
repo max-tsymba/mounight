@@ -143,6 +143,19 @@ class UserController {
       next(e);
     }
   }
+
+  async delete(
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction,
+  ) {
+    try {
+      const user = await userService.delete(req.body._id);
+      return res.json('Account has been deleted' + user);
+    } catch (e: any) {
+      next(e);
+    }
+  }
 }
 
 export default new UserController();
