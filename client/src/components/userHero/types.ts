@@ -4,4 +4,5 @@ export default interface IUserHeroProps {
   createdAt: string;
   avatar: any;
   isCurrentUser: boolean;
+  mediaCount?: number;
 }

@@ -3,9 +3,7 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import Button from '../button';
 import Container from '../container';
-// @ts-ignore
 import logo from '../../assets/static/logo.svg';
-// @ts-ignore
 import userIcon from '../../assets/static/user.png';
 import styles from './styles.module.scss';
 import AuthService from '../../services/AuthService';

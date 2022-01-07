@@ -13,6 +13,7 @@ const defaultProps: IUserHeroProps = {
   createdAt: '20 dec 2021',
   avatar: '',
   isCurrentUser: true,
+  mediaCount: 0,
 };
 
 const UserHero = ({
@@ -21,6 +22,7 @@ const UserHero = ({
   bgCover,
   avatar,
   isCurrentUser,
+  mediaCount,
 }: IUserHeroProps) => {
   return (
     <section
@@ -38,6 +40,7 @@ const UserHero = ({
           <Avatar name={username} size="150px" round="50%" src={avatar} />
           <h1 className={styles.title}>{username}</h1>
           <p className={styles.subtitle}>Joined at {createdAt}</p>
+          <p>Amount of media: {mediaCount}</p>
         </div>
       </Container>
     </section>

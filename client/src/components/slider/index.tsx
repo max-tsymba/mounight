@@ -2,12 +2,12 @@ import React from 'react';
 import Container from '../container';
 import styles from './styles.module.scss';
 
-const MediaList = () => {
+const Slider = () => {
   return (
     <section className={styles.main}>
-      <Container>Media List</Container>
+      <Container>Slider</Container>
     </section>
   );
 };
 
-export default MediaList;
+export default Slider;

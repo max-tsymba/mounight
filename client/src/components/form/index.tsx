@@ -1,8 +1,6 @@
 import React from 'react';
 import IFormProps from './types';
 import styles from './styles.module.scss';
-// @ts-ignore
-// import close from '../../assets/static/close.png';
 
 const Form = ({ children, title }: IFormProps) => {
   return (

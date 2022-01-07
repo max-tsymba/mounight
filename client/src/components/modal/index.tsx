@@ -3,7 +3,6 @@ import { ReactNode, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import IModalProps from './types';
 import styles from './styles.module.scss';
-// @ts-ignore
 import close from '../../assets/static/close.png';
 
 const Modal = ({ children, show, setShow, setErrors }: IModalProps) => {

@@ -2,12 +2,12 @@ import React from 'react';
 import Container from '../container';
 import styles from './styles.module.scss';
 
-const MediaList = () => {
+const UploadForm = () => {
   return (
     <section className={styles.main}>
-      <Container>Media List</Container>
+      <Container>Upload Fro</Container>
     </section>
   );
 };
 
-export default MediaList;
+export default UploadForm;

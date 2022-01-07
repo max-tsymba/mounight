@@ -5,12 +5,12 @@ import UserHero from '../components/userHero';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { setUserPull } from '../stores/reducers/users.reducer';
-// @ts-ignore
 import error from '../assets/static/error.png';
 import Container from '../components/container';
-import MediaList from '../components/mediaList';
 import { setFiles } from '../stores/reducers/file.reducer';
 import { API_AUTH_URL, API_MEDIA_URL, SERVER_URL } from '../utils/conts';
+import UploadForm from '../components/uploadForm';
+import MediaList from '../components/mediaList';
 
 const UserPage = () => {
   const user = useSelector((state: RootState) => state.user);
@@ -83,6 +83,7 @@ const UserPage = () => {
         avatar={avatar}
         bgCover={bg_cover}
       />
+      <UploadForm />
       <MediaList />
       {media.map((item: any) => (
         <img src={`${SERVER_URL}/${item.path}`} key={item.path} alt="" />
