@@ -2,7 +2,7 @@ import { RootState } from '../stores';
 import React, { Dispatch, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import UserHero from '../components/userHero';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { setUserPull } from '../stores/reducers/users.reducer';
 import error from '../assets/static/error.png';
@@ -90,10 +90,8 @@ const UserPage = () => {
       />
       <UploadForm />
       <MediaList>
-        {media.map((item: any, index: any) => (
-          <Link to={`/${index}`} key={item._id}>
-            <img src={`${SERVER_URL}/${item.path}`} alt="" />
-          </Link>
+        {media.map((item: any) => (
+          <img src={`${SERVER_URL}/${item.path}`} alt="" key={item._id} />
         ))}
       </MediaList>
     </>

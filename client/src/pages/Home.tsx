@@ -42,8 +42,8 @@ const Home: FunctionComponent = () => {
       />
       <Slider />
       <MediaList>
-        {allMedia.map((item: any, index: number) => (
-          <Link to={`/${index}`} key={item._id}>
+        {allMedia.map((item: any) => (
+          <Link to={`/media/${item._id}`} key={item._id}>
             <img src={`${SERVER_URL}/${item.path}`} key={item._id} alt="" />
           </Link>
         ))}

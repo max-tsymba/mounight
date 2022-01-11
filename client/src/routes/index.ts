@@ -5,6 +5,7 @@ import Users from '../pages/Users';
 import UserPage from '../pages/UserPage';
 import UserSettings from '../pages/UserSettings';
 import Activation from '../pages/Activation';
+import MediaPage from '../pages/MediaPage';
 
 export default interface IRoute {
   path: string;
@@ -19,11 +20,13 @@ export enum RoutesNames {
   USER_PAGE = '/users/:userId',
   USER_SETTINGS = '/account/settings',
   ACTIVATE = '/activation',
+  MEDIA_PAGE = '/media/:mediaId',
 }
 
 export const publicRoutes: IRoute[] = [
   { path: RoutesNames.HOME, component: Home, exact: true },
   { path: RoutesNames.Page404, component: Page404, exact: true },
+  { path: RoutesNames.ACTIVATE, component: Activation, exact: true },
 ];
 
 export const privateRoutes: IRoute[] = [
@@ -33,4 +36,5 @@ export const privateRoutes: IRoute[] = [
   { path: RoutesNames.USER_PAGE, component: UserPage, exact: true },
   { path: RoutesNames.USER_SETTINGS, component: UserSettings, exact: true },
   { path: RoutesNames.ACTIVATE, component: Activation, exact: true },
+  { path: RoutesNames.MEDIA_PAGE, component: MediaPage, exact: true },
 ];
