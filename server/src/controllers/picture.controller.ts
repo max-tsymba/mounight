@@ -9,10 +9,7 @@ class PictureController {
       const file: any = req.files.file;
       const user: any = req.params.id;
       const { name }: { name: string } = file;
-      // const dir = `B:/Developments/Portfolio/mounight/server/src/files/${user}`;
       const dir = path.resolve(__dirname, '..', 'files', user);
-
-      // const path = `${process.env.FILE_PATH}\\${user}\\${name}`;
       if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir);
       }
@@ -22,6 +19,7 @@ class PictureController {
       const path_for_client = `${user}/${file.name}`;
 
       const type = file.name.split('.').pop();
+
       const newMedia: any = await pictureService.create({
         name,
         type,

@@ -7,6 +7,7 @@ import { setAllFiles } from '../stores/reducers/files.reducer';
 import { API_MEDIA_URL, SERVER_URL } from '../utils/conts';
 import MediaList from '../components/mediaList';
 import Slider from '../components/slider';
+import { Link } from 'react-router-dom';
 
 const Home: FunctionComponent = () => {
   const usersFiles = useSelector((state: RootState) => state.medias);
@@ -40,10 +41,13 @@ const Home: FunctionComponent = () => {
         subtitle="Explore over 5,000,000 photos of artist from around the world"
       />
       <Slider />
-      <MediaList />
-      {allMedia.map((item: any) => (
-        <img src={`${SERVER_URL}/${item.path}`} key={item.path} alt="" />
-      ))}
+      <MediaList>
+        {allMedia.map((item: any, index: number) => (
+          <Link to={`/${index}`} key={item._id}>
+            <img src={`${SERVER_URL}/${item.path}`} key={item._id} alt="" />
+          </Link>
+        ))}
+      </MediaList>
     </div>
   );
 };

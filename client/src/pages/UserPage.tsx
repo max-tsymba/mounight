@@ -2,7 +2,7 @@ import { RootState } from '../stores';
 import React, { Dispatch, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import UserHero from '../components/userHero';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { setUserPull } from '../stores/reducers/users.reducer';
 import error from '../assets/static/error.png';
@@ -20,6 +20,7 @@ const UserPage = () => {
   const { userId }: any = useParams();
   const [responseStatus, setResponseStatus] = useState<number>(200);
   const [loading, setLoading] = useState<boolean>(true);
+  let counter = 0;
   let joinDate = '';
 
   useEffect((): any => {
@@ -65,6 +66,9 @@ const UserPage = () => {
   const media: any = userMedia.files;
   const isCurrentUser = user.currentUser.id === users.userPull._id;
 
+  media.forEach(() => counter++);
+  console.log(counter);
+
   if (responseStatus === 200 && !loading) {
     const date = new Date(createdAt);
     joinDate = date.toLocaleDateString('en-us', {
@@ -82,12 +86,16 @@ const UserPage = () => {
         createdAt={joinDate}
         avatar={avatar}
         bgCover={bg_cover}
+        mediaCount={counter}
       />
       <UploadForm />
-      <MediaList />
-      {media.map((item: any) => (
-        <img src={`${SERVER_URL}/${item.path}`} key={item.path} alt="" />
-      ))}
+      <MediaList>
+        {media.map((item: any, index: any) => (
+          <Link to={`/${index}`} key={item._id}>
+            <img src={`${SERVER_URL}/${item.path}`} alt="" />
+          </Link>
+        ))}
+      </MediaList>
     </>
   ) : (
     <section>

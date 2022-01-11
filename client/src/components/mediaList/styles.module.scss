@@ -1,3 +1,13 @@
 .main {
   @apply my-40;
 }
+
+.list {
+  @apply grid grid-cols-2 gap-12;
+}
+
+.list img {
+  object-fit: cover;
+  height: 300px;
+  width: 100%;
+}

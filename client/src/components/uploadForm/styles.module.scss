@@ -1,3 +1,12 @@
 .main {
   @apply my-40;
 }
+
+.drag__form {
+  width: 100%;
+  border: dashed 2px #000;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
