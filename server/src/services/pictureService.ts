@@ -1,6 +1,8 @@
+import path from 'path';
 import IMediaDto from '../dtos/picture/picture';
 import IPicture from '../models/Picture/IPicture';
 import Picture from '../models/Picture/Picture';
+import fs from 'fs';
 
 class PictureService {
   async create(dto: IMediaDto): Promise<IPicture> {
@@ -30,6 +32,23 @@ class PictureService {
   async delete(id: string): Promise<string> {
     const media: any = await Picture.findByIdAndDelete(id).exec();
     return media._id;
+  }
+
+  async downloadFile(id: string) {
+    const file: any = await Picture.findById(id);
+    const dir = path.resolve(
+      __dirname,
+      '..',
+      'files',
+      String(file.user),
+      file.name,
+    );
+
+    if (fs.existsSync(dir))
+      return {
+        dir,
+        fileName: file.name,
+      };
   }
 }
 

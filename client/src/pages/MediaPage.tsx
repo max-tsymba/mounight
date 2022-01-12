@@ -5,6 +5,7 @@ import axios from 'axios';
 import { API_MEDIA_URL, SERVER_URL } from '../utils/conts';
 import PictureItem from '../components/picture';
 import Knob from '../components/knob';
+import { downloadFile } from '../API/file';
 
 const MediaPage = () => {
   const { mediaId }: any = useParams();
@@ -38,11 +39,21 @@ const MediaPage = () => {
     return () => (cleanupFunction = true);
   }, [mediaId]);
 
+  function downloadClickHandler(e: any) {
+    e.stopPropagation();
+    downloadFile(responseData.name, mediaId);
+  }
+
   return responseStatus === 200 && !loading ? (
     <div>
       <Container>
         <PictureItem bgUrl={`${SERVER_URL}/${responseData.path}`}>
-          <Knob className="absolute right-90 top-0">Download</Knob>
+          <Knob
+            className="absolute right-90 top-0"
+            onClick={(e: any) => downloadClickHandler(e)}
+          >
+            Download
+          </Knob>
         </PictureItem>
       </Container>
     </div>

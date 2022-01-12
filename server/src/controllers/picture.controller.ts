@@ -83,6 +83,19 @@ class PictureController {
       next(e);
     }
   }
+
+  async downloadFile(
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction,
+  ) {
+    try {
+      const file = await pictureService.downloadFile(req.params.id);
+      return res.download(file.dir, file.fileName);
+    } catch (e: any) {
+      next(e);
+    }
+  }
 }
 
 export default new PictureController();
